@@ -8,7 +8,15 @@
     "longName": "Metronome",
     "projectType": "native",
     "resources": {
-        "media": []
+        "media": [
+            {
+                "file": "images/app_logo",
+                "menuIcon": true,
+                "name": "app_logo",
+                "targetPlatforms": null,
+                "type": "png-trans"
+            }
+        ]
     },
     "sdkVersion": "3",
     "shortName": "Metronome",
@@ -16,7 +24,7 @@
         "aplite",
         "basalt"
     ],
-    "uuid": "55decddb-759f-4f54-bcee-eb20d70c1ba6",
+    "uuid": "b0954b06-6d55-4802-b9ac-dbb51e5e66d2",
     "versionLabel": "1.0",
     "watchapp": {
         "watchface": false
