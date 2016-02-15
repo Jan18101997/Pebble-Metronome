@@ -1,0 +1,24 @@
+{
+    "appKeys": {},
+    "capabilities": [
+        ""
+    ],
+    "companyName": "Jan Wiesemann",
+    "enableMultiJS": true,
+    "longName": "Metronome",
+    "projectType": "native",
+    "resources": {
+        "media": []
+    },
+    "sdkVersion": "3",
+    "shortName": "Metronome",
+    "targetPlatforms": [
+        "aplite",
+        "basalt"
+    ],
+    "uuid": "55decddb-759f-4f54-bcee-eb20d70c1ba6",
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": false
+    }
+}
