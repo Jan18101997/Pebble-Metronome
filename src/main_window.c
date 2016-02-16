@@ -145,7 +145,7 @@ static void initialise_ui(void) {
   layer_add_child(window_get_root_layer(s_window), (Layer *)s_textlayer_current_bpm);
   
   // s_textlayer_bpm
-  s_textlayer_bpm = text_layer_create(GRect(0, 81, 144, 21));
+  s_textlayer_bpm = text_layer_create(GRect(0, 81, 144, 25));
   text_layer_set_background_color(s_textlayer_bpm, GColorClear);
   text_layer_set_text_color(s_textlayer_bpm, GColorWhite);
   text_layer_set_text(s_textlayer_bpm, "bpm");

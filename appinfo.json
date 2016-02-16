@@ -14,7 +14,7 @@
                 "menuIcon": true,
                 "name": "app_logo",
                 "targetPlatforms": null,
-                "type": "png-trans"
+                "type": "bitmap"
             }
         ]
     },
@@ -24,8 +24,8 @@
         "aplite",
         "basalt"
     ],
-    "uuid": "b0954b06-6d55-4802-b9ac-dbb51e5e66d2",
-    "versionLabel": "1.0",
+    "uuid": "01d4832c-94ac-4533-9203-3d351addf9a4",
+    "versionLabel": "1.1",
     "watchapp": {
         "watchface": false
     }
