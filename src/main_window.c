@@ -2,7 +2,8 @@
 #include "main_window.h"
 
 #define MAX_BPM 300
-#define MIN_BPM 0
+#define MIN_BPM 10
+#define PERSIST_KEY_BPM 0
 
 // BEGIN AUTO-GENERATED UI CODE; DO NOT MODIFY
 static Window *s_window;
@@ -90,6 +91,8 @@ static void up_click_handler(ClickRecognizerRef recognizer, void *context)
   {
     currentBPM++;
     display_current_bpm();
+    
+    startTimer();
   }
 }
 
@@ -120,6 +123,8 @@ static void down_click_handler(ClickRecognizerRef recognizer, void *context)
   {
     currentBPM--;
     display_current_bpm();
+    
+    startTimer();
   }
 }
 
@@ -166,17 +171,27 @@ static void handle_window_unload(Window* window) {
 }
 
 void create_main_window(void) {
+  currentBPM = persist_read_int(PERSIST_KEY_BPM);
+    
+  if(currentBPM == 0)
+  {
+    currentBPM = 80;
+  }
+  
   initialise_ui();
   window_set_window_handlers(s_window, (WindowHandlers) {
     .unload = handle_window_unload,
   });
   window_set_click_config_provider(s_window, click_config_provider);
   window_stack_push(s_window, true);
+  
+  display_current_bpm();
 }
 
 void delete_main_window(void) {
   window_stack_remove(s_window, true);  
   destroy_ui();
+  persist_write_int(PERSIST_KEY_BPM, currentBPM);
 }
 
 int main(void) 
