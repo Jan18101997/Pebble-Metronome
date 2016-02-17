@@ -9,7 +9,7 @@
 static Window *s_window;
 static TextLayer *s_textlayer_current_bpm;
 static TextLayer *s_textlayer_bpm;
-static int currentBPM = 80;
+static int currentBPM = 0;
 static AppTimer *timer;
 static int8_t mode = 0;
 static bool colorIsInverted = false;
@@ -33,6 +33,8 @@ VibePattern vibePattern = {
 
 static void display_current_bpm()
 {
+  persist_write_int(PERSIST_KEY_BPM, currentBPM);
+  
   static char buffer[8];
   
   snprintf(buffer, sizeof(buffer), "%d", currentBPM);
@@ -157,6 +159,13 @@ static void initialise_ui(void) {
   text_layer_set_text_alignment(s_textlayer_bpm, GTextAlignmentCenter);
   text_layer_set_font(s_textlayer_bpm, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
   layer_add_child(window_get_root_layer(s_window), (Layer *)s_textlayer_bpm);
+  
+  currentBPM = persist_read_int(PERSIST_KEY_BPM);
+    
+  if(currentBPM == 0)
+  {
+    currentBPM = 80;
+  }
 }
 
 static void destroy_ui(void) {
@@ -171,13 +180,7 @@ static void handle_window_unload(Window* window) {
 }
 
 void create_main_window(void) {
-  currentBPM = persist_read_int(PERSIST_KEY_BPM);
-    
-  if(currentBPM == 0)
-  {
-    currentBPM = 80;
-  }
-  
+
   initialise_ui();
   window_set_window_handlers(s_window, (WindowHandlers) {
     .unload = handle_window_unload,
@@ -191,7 +194,6 @@ void create_main_window(void) {
 void delete_main_window(void) {
   window_stack_remove(s_window, true);  
   destroy_ui();
-  persist_write_int(PERSIST_KEY_BPM, currentBPM);
 }
 
 int main(void) 
